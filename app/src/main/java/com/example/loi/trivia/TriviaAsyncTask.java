@@ -4,9 +4,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.Gravity;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -53,14 +56,18 @@ public class TriviaAsyncTask extends AsyncTask<String, Integer, ArrayList<Questi
      *
      * <p>This method won't be invoked if the task was cancelled.</p>
      *
-     * @param questions The result of the operation computed by {@link #doInBackground}.
+     * @param result The result of the operation computed by {@link #doInBackground}.
      * @see #onPreExecute
      * @see #doInBackground
      * @see #onCancelled(Object)
      */
     @Override
-    protected void onPostExecute(ArrayList<Question> questions) {
-        super.onPostExecute(questions);
+    protected void onPostExecute(ArrayList<Question> result) {
+        super.onPostExecute(result);
+        MainActivity.triviaArrayList = result;
+        Toast t = Toast.makeText(context, "Loaded", Toast.LENGTH_SHORT);
+        t.setGravity(Gravity.BOTTOM, 0 , 180);
+        t.show();
     }
 
     /**
@@ -74,6 +81,9 @@ public class TriviaAsyncTask extends AsyncTask<String, Integer, ArrayList<Questi
     @Override
     protected void onProgressUpdate(Integer... values) {
         super.onProgressUpdate(values);
+
+
+
     }
 
     /**
