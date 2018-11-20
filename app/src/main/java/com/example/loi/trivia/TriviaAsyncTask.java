@@ -108,27 +108,27 @@ public class TriviaAsyncTask extends AsyncTask<String, Integer, ArrayList<Questi
 
                 JSONObject root = new JSONObject(json);
 
-                JSONArray questions = root.optJSONArray("questions"); // root object
+                JSONArray questions = root.optJSONArray("results"); // root object
 
                 for (int i = 0; i < questions.length(); i++) {
                     JSONObject questionsJSONObject = questions.optJSONObject(i);
-                    JSONObject choicesJSONObject = questionsJSONObject.optJSONObject("choices"); //sub objects
+                    JSONObject choicesJSONObject = questionsJSONObject.optJSONObject("incorrect_answers"); //sub objects
 
                     Question t = new Question();
 
-                    t.setId(questionsJSONObject.optString("id"));
-                    t.setText(questionsJSONObject.optString("text"));
-                    t.setText(questionsJSONObject.optString("text"));
-                    t.setAnswer(choicesJSONObject.optString("answer"));
+                    t.setId(questionsJSONObject.optString("type"));
+                    t.setText(questionsJSONObject.optString("question"));
+                    t.setText(questionsJSONObject.optString("question"));
+                    t.setAnswer(choicesJSONObject.optString("correct_answer"));
                     if(questionsJSONObject.optString("image").startsWith("http"))
                     {
                         t.setImageUrl(questionsJSONObject.optString("image"));
                     }
                     t.setQuestions(choicesJSONObject.getJSONArray("choice"));
 
-                    Log.d("JsonName", "" + questionsJSONObject.getString("text"));
-                    Log.d("Jsonid", "" + questionsJSONObject.getString("id"));
-                    Log.d("JsonChoice", "" + choicesJSONObject.getString("choice"));
+                    Log.d("JsonName", "" + questionsJSONObject.getString("type"));
+                    Log.d("Jsonid", "" + questionsJSONObject.getString("question"));
+                    Log.d("JsonChoice", "" + choicesJSONObject.getString("correct_answer"));
                     Log.d("Answer", "" + choicesJSONObject.getString("answer"));
 
 

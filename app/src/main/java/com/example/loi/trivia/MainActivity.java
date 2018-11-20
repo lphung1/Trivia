@@ -24,12 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final ImageView start = findViewById(R.id.imageView7);
 
-        if( isConnected() ){
-            new TriviaAsyncTask(MainActivity.this).execute("https://opentdb.com/api.php?amount=20");
-        }
-        else{
-            Toast.makeText(MainActivity.this, "Not connected to internet", Toast.LENGTH_LONG).show();
-        }
+
 
 
         start.setOnClickListener(new View.OnClickListener() {
@@ -39,7 +34,12 @@ public class MainActivity extends AppCompatActivity {
                 Animation fadeOut = AnimationUtils.loadAnimation(MainActivity.this , R.anim.fadeout );
                 start.startAnimation(rotate);
 
-
+                if( isConnected() ){
+                    new TriviaAsyncTask(MainActivity.this).execute("https://opentdb.com/api.php?amount=20&category=31&difficulty=easy");
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "Not connected to internet", Toast.LENGTH_LONG).show();
+                }
 
 
             }
