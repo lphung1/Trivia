@@ -68,6 +68,16 @@ public class TriviaAsyncTask extends AsyncTask<String, Integer, ArrayList<Questi
         Toast t = Toast.makeText(context, "Loaded", Toast.LENGTH_SHORT);
         t.setGravity(Gravity.BOTTOM, 0 , 180);
         t.show();
+
+        Log.d("Result Arraylist is Empty:", " -" + result.isEmpty() );
+
+        for(int i = 0; MainActivity.triviaArrayList.size() > i; i ++) {
+
+            Log.d("Arraylist Contents: " + i + " ",  MainActivity.triviaArrayList.get(i).getQuestion());
+
+        }
+
+
     }
 
     /**
@@ -87,18 +97,12 @@ public class TriviaAsyncTask extends AsyncTask<String, Integer, ArrayList<Questi
     }
 
     /**
-     * Override this method to perform a computation on a background thread. The
-     * specified parameters are the parameters passed to {@link #execute}
-     * by the caller of this task.
      * <p>
      * This method can call {@link #publishProgress} to publish updates
      * on the UI thread.
      *
-     * @param params The parameters of the task.
-     * @return A result, defined by the subclass of this task.
-     * @see #onPreExecute()
-     * @see #onPostExecute
-     * @see #publishProgress
+     * @param params html url to trivia API.
+     * @return result, an arraylist containing many question objects, each holding question data from api.
      */
     @Override
     protected ArrayList<Question> doInBackground(String... params) {
@@ -122,24 +126,30 @@ public class TriviaAsyncTask extends AsyncTask<String, Integer, ArrayList<Questi
 
                 for (int i = 0; i < questions.length(); i++) {
                     JSONObject questionsJSONObject = questions.optJSONObject(i);
-                    JSONObject choicesJSONObject = questionsJSONObject.optJSONObject("incorrect_answers"); //sub objects
+                    JSONArray choicesJSONObject = questionsJSONObject.optJSONArray("incorrect_answers"); //sub objects
 
                     Question t = new Question();
 
-                    t.setId(questionsJSONObject.optString("type"));
-                    t.setText(questionsJSONObject.optString("question"));
-                    t.setText(questionsJSONObject.optString("question"));
-                    t.setAnswer(choicesJSONObject.optString("correct_answer"));
+                    t.setQuestion(questionsJSONObject.getString("question"));
+                    t.setAnswer(questionsJSONObject.getString("correct_answer"));
+                    t.setChoices(choicesJSONObject);
+                    t.setCategory(questionsJSONObject.getString("category"));
+
+                    /*
+
                     if(questionsJSONObject.optString("image").startsWith("http"))
                     {
                         t.setImageUrl(questionsJSONObject.optString("image"));
                     }
-                    t.setQuestions(choicesJSONObject.getJSONArray("choice"));
+                    */
 
-                    Log.d("JsonName", "" + questionsJSONObject.getString("type"));
-                    Log.d("Jsonid", "" + questionsJSONObject.getString("question"));
-                    Log.d("JsonChoice", "" + choicesJSONObject.getString("correct_answer"));
-                    Log.d("Answer", "" + choicesJSONObject.getString("answer"));
+                    t.setChoices(choicesJSONObject);
+
+                    Log.d("Question Type ", "" + questionsJSONObject.getString("type"));
+                    Log.d("Json Question", "" + questionsJSONObject.getString("question"));
+                    Log.d("Json category", "" + questionsJSONObject.getString("category"));
+                    Log.d("Json answer", "" + questionsJSONObject.getString("correct_answer"));
+                    Log.d("Json choices", "" + choicesJSONObject.getString(0));
 
 
                     result.add(t);

@@ -6,20 +6,25 @@ import org.json.JSONException;
 
 public class Question implements Serializable {
 
-    String id, text, imageUrl, answer = null;
-    JSONArray questions;
+    String question, text, imageUrl, answer, category  = null;
+    JSONArray choices;
 
     //blank constructor
     public Question(){
 
     }
 
-    public String getId() {
-        return id;
+    //sets question and replaces html quotes into string quotes
+    public void setQuestion(String s){
+        s = s.replaceAll("&quot;","'");
+        s = s.replaceAll("&#039;","'");
+        s = s.replaceAll("&eacute;", "");
+
+        question = s;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getQuestion(){
+        return question;
     }
 
     public String getText() {
@@ -46,11 +51,19 @@ public class Question implements Serializable {
         this.answer = answer;
     }
 
-    public JSONArray getQuestions() {
-        return questions;
+    public JSONArray getChoices() {
+        return choices;
     }
 
-    public void setQuestions(JSONArray questions) {
-        this.questions = questions;
+    public void setChoices(JSONArray questions) {
+        this.choices = questions;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

@@ -3,6 +3,7 @@ package com.example.loi.trivia;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -40,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
                 else{
                     Toast.makeText(MainActivity.this, "Not connected to internet", Toast.LENGTH_LONG).show();
                 }
+
+                Log.d("ArrayList Is empty", "-" + triviaArrayList.isEmpty());
 
 
             }
