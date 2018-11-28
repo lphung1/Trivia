@@ -52,7 +52,9 @@ public class ProgressAsyncTask extends AsyncTask<Question, Void, Void> {
         rb2.setText(question.getChoices(1));
         rb3.setText(question.getChoices(2));
         rb4.setText(question.getAnswer());
-
+        if(question.getCategory().contains("Anime") ){
+            triviaImage.setImageResource(R.drawable.anime_category);
+        }
 
 
     }

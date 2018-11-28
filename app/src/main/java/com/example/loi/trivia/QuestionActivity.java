@@ -22,6 +22,8 @@ public class QuestionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_question);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -30,6 +32,22 @@ public class QuestionActivity extends AppCompatActivity {
         setTitle("Trivia Time");
         position = 0;
         correctAnswers = 0;
+
+
+        question = MainActivity.triviaArrayList.get(position);
+
+
+
+    }//end oncreate
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        final RadioGroup rg = findViewById(R.id.radioGroup);
+
+        Log.d("button", "next button clicked");
+        Log.d("Correct Answer this", "is-" + question.getAnswer());
         final ImageView triviaImage = findViewById(R.id.categoryIV);
         final TextView textQuestion = findViewById(R.id.questionTextView);
         final TextView timeText = findViewById(R.id.timerTV);
@@ -40,12 +58,24 @@ public class QuestionActivity extends AppCompatActivity {
         final RadioButton rb3 = findViewById(R.id.rb3);
         final RadioButton rb4 = findViewById(R.id.rb4);
 
-        question = MainActivity.triviaArrayList.get(position);
-
         ProgressAsyncTask nextQuestion = new ProgressAsyncTask(textQuestion, triviaImage, textQuestionNumber, categoryText, rb1, rb2, rb3, rb4, QuestionActivity.this );
         nextQuestion.execute(MainActivity.triviaArrayList.get(position));
 
+        //Log.d("Selected answer", "" + getAnswer(rb1, rb2, rb3, rb4));
+
+       findViewById(R.id.nextButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                position += 1;
+                question = MainActivity.triviaArrayList.get(position);
+                ProgressAsyncTask nextQuestion = new ProgressAsyncTask(textQuestion, triviaImage, textQuestionNumber, categoryText, rb1, rb2, rb3, rb4, QuestionActivity.this );
+
+                nextQuestion.execute(question);
+
+                rg.clearCheck();
+
+            }
+        });
+
     }
-
-
 }
