@@ -51,8 +51,15 @@ public class Question implements Serializable {
         this.answer = answer;
     }
 
-    public JSONArray getChoices() {
-        return choices;
+    public String getChoices(int i) {
+
+        try {
+            return choices.get(i).toString();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+
     }
 
     public void setChoices(JSONArray questions) {

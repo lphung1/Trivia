@@ -1,6 +1,7 @@
 package com.example.loi.trivia;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,10 +24,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+        if( isConnected() ){
+            new TriviaAsyncTask(MainActivity.this).execute("https://opentdb.com/api.php?amount=20&category=31&difficulty=easy");
+        }
+        else{
+            Toast.makeText(MainActivity.this, "Not connected to internet", Toast.LENGTH_LONG).show();
+        }
+
+        Log.d("ArrayList Is empty", "-" + triviaArrayList.isEmpty());
+
+
+
+
+
+    }//end on create
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
         final ImageView start = findViewById(R.id.imageView7);
-
-
-
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,21 +55,11 @@ public class MainActivity extends AppCompatActivity {
                 Animation rotate = AnimationUtils.loadAnimation(MainActivity.this , R.anim.rotate );
                 Animation fadeOut = AnimationUtils.loadAnimation(MainActivity.this , R.anim.fadeout );
                 start.startAnimation(rotate);
-
-                if( isConnected() ){
-                    new TriviaAsyncTask(MainActivity.this).execute("https://opentdb.com/api.php?amount=20&category=31&difficulty=easy");
-                }
-                else{
-                    Toast.makeText(MainActivity.this, "Not connected to internet", Toast.LENGTH_LONG).show();
-                }
-
-                Log.d("ArrayList Is empty", "-" + triviaArrayList.isEmpty());
-
+                Intent i = new Intent(MainActivity.this, QuestionActivity.class);
+                startActivity(i);
 
             }
         });
-
-
 
     }
 

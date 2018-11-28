@@ -37,8 +37,6 @@ public class TriviaAsyncTask extends AsyncTask<String, Integer, ArrayList<Questi
     //constructor
     public TriviaAsyncTask(Context context) {
 
-        this.button = button;
-
 
         this.context = context;
 
@@ -56,7 +54,7 @@ public class TriviaAsyncTask extends AsyncTask<String, Integer, ArrayList<Questi
      *
      * <p>This method won't be invoked if the task was cancelled.</p>
      *
-     * @param result The result of the operation computed by {@link #doInBackground}.
+     * @param result Arraylist result from API parsing.
      * @see #onPreExecute
      * @see #doInBackground
      * @see #onCancelled(Object)
