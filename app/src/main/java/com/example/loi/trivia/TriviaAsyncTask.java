@@ -63,9 +63,7 @@ public class TriviaAsyncTask extends AsyncTask<String, Integer, ArrayList<Questi
     protected void onPostExecute(ArrayList<Question> result) {
         super.onPostExecute(result);
         MainActivity.triviaArrayList = result;
-        Toast t = Toast.makeText(context, "Loaded", Toast.LENGTH_SHORT);
-        t.setGravity(Gravity.BOTTOM, 0 , 180);
-        t.show();
+
 
         Log.d("Result Arraylist is Empty:", " -" + result.isEmpty() );
 

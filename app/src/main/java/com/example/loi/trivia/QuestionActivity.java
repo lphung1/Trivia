@@ -29,7 +29,6 @@ public class QuestionActivity extends AppCompatActivity {
         actionBar.hide();
 
         setContentView(R.layout.activity_question);
-        setTitle("Trivia Time");
         position = 0;
         correctAnswers = 0;
 
