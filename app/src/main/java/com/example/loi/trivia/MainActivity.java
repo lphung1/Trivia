@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     public static ArrayList<Question> triviaArrayList = new ArrayList<Question>();
+    public static int quizLength = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if( isConnected() ){
-                    new TriviaAsyncTask(MainActivity.this).execute("https://opentdb.com/api.php?amount=20&category=31&difficulty=easy");
+                    new TriviaAsyncTask(MainActivity.this).execute("https://opentdb.com/api.php?amount=" + quizLength + "&category=31&difficulty=easy");
                 }
                 else{
                     Toast.makeText(MainActivity.this, "Not connected to internet", Toast.LENGTH_LONG).show();

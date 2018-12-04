@@ -19,6 +19,8 @@ public class Question implements Serializable {
         s = s.replaceAll("&quot;","'");
         s = s.replaceAll("&#039;","'");
         s = s.replaceAll("&eacute;", "");
+        s = s.replaceAll("&amp;","&");
+
 
         question = s;
     }
@@ -64,6 +66,8 @@ public class Question implements Serializable {
 
     public void setChoices(JSONArray questions) {
         this.choices = questions;
+
+
     }
 
     public String getCategory() {

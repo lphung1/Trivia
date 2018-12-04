@@ -8,12 +8,14 @@ import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class QuestionActivity extends AppCompatActivity {
 
@@ -71,16 +73,66 @@ public class QuestionActivity extends AppCompatActivity {
        findViewById(R.id.nextButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String checkedAnswer = getAnswer(rb1, rb2, rb3, rb4);
+                Log.d("Checked Answer :", checkedAnswer);
+                Log.d("Correct Answer :", question.getAnswer());
+
+                if(checkedAnswer == question.getAnswer()){
+                    Toast t = Toast.makeText(QuestionActivity.this, "Correct!", Toast.LENGTH_LONG);
+                    t.setGravity(Gravity.BOTTOM, 400, 340);
+                    t.show();
+                    correctAnswers += 1;
+
+                }
+                else{
+                    Toast t = Toast.makeText(QuestionActivity.this, "Incorrect!", Toast.LENGTH_LONG);
+                    t.setGravity(Gravity.BOTTOM, 400, 340);
+                    t.show();
+                }
+
                 position += 1;
                 question = MainActivity.triviaArrayList.get(position);
+
+
                 ProgressAsyncTask nextQuestion = new ProgressAsyncTask(textQuestion, triviaImage, textQuestionNumber, categoryText, rb1, rb2, rb3, rb4, QuestionActivity.this );
 
                 nextQuestion.execute(question);
 
+
                 rg.clearCheck();
+
+                if(position == MainActivity.triviaArrayList.size() - 1){
+                    Intent i = new Intent(QuestionActivity.this, ResultsActivity.class);
+                    startActivity(i);
+                }
 
             }
         });
 
     }
+
+    private String getAnswer(RadioButton rb1, RadioButton rb2, RadioButton rb3, RadioButton rb4 ){
+
+        if(rb1.isChecked()){
+            return rb1.getText().toString();
+        }
+        else if(rb2.isChecked()){
+            return rb2.getText().toString();
+        }
+        else if(rb3.isChecked()){
+            return rb3.getText().toString();
+        }
+        else if (rb4.isChecked()){
+            return rb4.getText().toString();
+        }
+        else
+            return "-";
+
+    }
+
+    public int getCorrectAnswers(){
+        return correctAnswers;
+    }
+
 }
