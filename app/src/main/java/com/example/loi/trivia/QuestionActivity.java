@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -24,9 +25,14 @@ public class QuestionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
+        Button exitButton = findViewById(R.id.exitButton);
+        Button nextButton = findViewById(R.id.nextButton);
         setContentView(R.layout.activity_question);
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+
+
 
         setContentView(R.layout.activity_question);
         position = 0;
