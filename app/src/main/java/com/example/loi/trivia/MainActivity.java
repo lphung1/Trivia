@@ -47,26 +47,6 @@ public class MainActivity extends AppCompatActivity {
         String diff = "&difficulty=" + difficulty.getSelectedItem().toString().toLowerCase();
         String ques = "amount=" + questions.getSelectedItem().toString();
 
-        api = "https://opentdb.com/api.php?" + ques + cat + diff;
-
-        Log.d("a1", "api : " + api);
-
-        if( isConnected() ){
-            new TriviaAsyncTask(MainActivity.this).execute(api);
-        }
-        else{
-            Toast.makeText(MainActivity.this, "Not connected to internet", Toast.LENGTH_LONG).show();
-        }
-
-        Log.d("ArrayList Is empty", "-" + triviaArrayList.isEmpty());
-
-    }//end on create
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d("a1", "OnResume started");
-
         start = findViewById(R.id.imageView7);
 
         start.setOnClickListener(new View.OnClickListener() {
@@ -93,11 +73,18 @@ public class MainActivity extends AppCompatActivity {
                 Animation rotate = AnimationUtils.loadAnimation(MainActivity.this , R.anim.rotate );
                 Animation fadeOut = AnimationUtils.loadAnimation(MainActivity.this , R.anim.fadeout );
                 start.startAnimation(rotate);
-                Intent i = new Intent(MainActivity.this, QuestionActivity.class);
-                startActivity(i);
+
 
             }
         });
+
+    }//end on create
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("a1", "OnResume started");
+
 
     }
 

@@ -2,6 +2,7 @@ package com.example.loi.trivia;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.Gravity;
@@ -72,6 +73,9 @@ public class TriviaAsyncTask extends AsyncTask<String, Integer, ArrayList<Questi
             Log.d("trv" + i + " ",  MainActivity.triviaArrayList.get(i).getQuestion());
 
         }
+
+        Intent i = new Intent(context, QuestionActivity.class);
+        context.startActivity(i);
 
 
     }

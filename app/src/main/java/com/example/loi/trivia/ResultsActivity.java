@@ -17,7 +17,7 @@ public class ResultsActivity extends AppCompatActivity {
         TextView percentageCorrect = findViewById(R.id.percentageCorrectTV);
         Button playAgain = findViewById(R.id.playAgainButton);
 
-        percentageCorrect.setText("" + QuestionActivity.correctAnswers + "/" + MainActivity.quizLength);
+        percentageCorrect.setText("" + QuestionActivity.correctAnswers + "/" + MainActivity.triviaArrayList.size());
 
         playAgain.setOnClickListener(new View.OnClickListener() {
             @Override

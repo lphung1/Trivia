@@ -40,6 +40,12 @@ public class QuestionActivity extends AppCompatActivity {
         position = 0;
         correctAnswers = 0;
 
+        if (MainActivity.triviaArrayList.isEmpty()){
+            Intent i = new Intent(QuestionActivity.this, MainActivity.class);
+            Toast.makeText(QuestionActivity.this, "Error Getting Data", Toast.LENGTH_LONG).show();
+            startActivity(i);
+        }
+
         question = MainActivity.triviaArrayList.get(position);
 
     }//end oncreate
