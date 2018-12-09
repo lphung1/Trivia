@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">Trivia</string>
+    <string name="trivia_title">Welcome To Trivia!</string>
+    <string name="categ">Category :</string>
+    <string name="difficulty">Difficulty :</string>
+    <string name="question">Questions :</string>
+
+    <string-array name="api_Categories">
+        <item>Computer Science</item>
+        <item>Film</item>
+        <item>Sports</item>
+        <item>History</item>
+        <item>Video Games</item>
+        <item>Anime/Manga</item>
+        <item>Celebrities</item>
+        <item>Vehicles</item>
+    </string-array>
+
+    <string-array name="api_Difficulties">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
+
+    <string-array name="api_Questions">
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>50</item>
+    </string-array>
 </resources>

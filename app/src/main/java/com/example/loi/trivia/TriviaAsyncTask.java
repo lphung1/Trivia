@@ -65,11 +65,11 @@ public class TriviaAsyncTask extends AsyncTask<String, Integer, ArrayList<Questi
         MainActivity.triviaArrayList = result;
 
 
-        Log.d("Result Arraylist is Empty:", " -" + result.isEmpty() );
+        Log.d("tr", "Results array is empty : " + result.isEmpty() );
 
         for(int i = 0; MainActivity.triviaArrayList.size() > i; i ++) {
 
-            Log.d("Arraylist Contents: " + i + " ",  MainActivity.triviaArrayList.get(i).getQuestion());
+            Log.d("trv" + i + " ",  MainActivity.triviaArrayList.get(i).getQuestion());
 
         }
 
@@ -119,6 +119,7 @@ public class TriviaAsyncTask extends AsyncTask<String, Integer, ArrayList<Questi
                 JSONObject root = new JSONObject(json);
 
                 JSONArray questions = root.optJSONArray("results"); // root object
+                Log.d("tr", "question length : " + questions.length());
 
                 for (int i = 0; i < questions.length(); i++) {
                     JSONObject questionsJSONObject = questions.optJSONObject(i);
@@ -141,11 +142,11 @@ public class TriviaAsyncTask extends AsyncTask<String, Integer, ArrayList<Questi
 
                     t.setChoices(choicesJSONObject);
 
-                    Log.d("Question Type ", "" + questionsJSONObject.getString("type"));
-                    Log.d("Json Question", "" + questionsJSONObject.getString("question"));
-                    Log.d("Json category", "" + questionsJSONObject.getString("category"));
-                    Log.d("Json answer", "" + questionsJSONObject.getString("correct_answer"));
-                    Log.d("Json choices", "" + choicesJSONObject.getString(0));
+                    Log.d("tr", "" + questionsJSONObject.getString("type"));
+                    Log.d("tr", "" + questionsJSONObject.getString("question"));
+                    Log.d("tr", "" + questionsJSONObject.getString("category"));
+                    Log.d("tr", "" + questionsJSONObject.getString("correct_answer"));
+                    Log.d("tr", "" + choicesJSONObject.getString(0));
 
 
                     result.add(t);

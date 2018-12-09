@@ -40,10 +40,7 @@ public class QuestionActivity extends AppCompatActivity {
         position = 0;
         correctAnswers = 0;
 
-
         question = MainActivity.triviaArrayList.get(position);
-
-
 
     }//end oncreate
 
