@@ -79,7 +79,29 @@ public class ProgressAsyncTask extends AsyncTask<Question, Void, Void> {
 
         if(question.getCategory().contains("Anime") ){
             triviaImage.setImageResource(R.drawable.anime_category);
+            Log.d("Category: ", question.getCategory());
         }
+        else if(question.getCategory().contains("Vehicles") ){
+            triviaImage.setImageResource(R.drawable.car_category);
+            Log.d("Category: ", question.getCategory());
+        }
+        else if(question.getCategory().contains("History") ){
+            triviaImage.setImageResource(R.drawable.history_category);
+            Log.d("Category: ", question.getCategory());
+        }
+        else if(question.getCategory().contains("Sports") ){
+            triviaImage.setImageResource(R.drawable.sports_category);
+            Log.d("Category: ", question.getCategory());
+        }
+        else if(question.getCategory().contains("Video Games") ){
+            triviaImage.setImageResource(R.drawable.videogames_category);
+            Log.d("Category: ", question.getCategory());
+        }
+        else if(question.getCategory().contains("Computers") ){
+            triviaImage.setImageResource(R.drawable.computerscience_category);
+            Log.d("Category: ", question.getCategory());
+        }
+
 
         if(rb1.getText() == ""){
             rb1.setVisibility(View.INVISIBLE);

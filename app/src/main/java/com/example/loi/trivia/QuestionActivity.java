@@ -27,13 +27,12 @@ public class QuestionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        Button exitButton = findViewById(R.id.exitButton);
+
         Button nextButton = findViewById(R.id.nextButton);
         setContentView(R.layout.activity_question);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-
 
 
         setContentView(R.layout.activity_question);
@@ -68,10 +67,33 @@ public class QuestionActivity extends AppCompatActivity {
         final RadioButton rb3 = findViewById(R.id.rb3);
         final RadioButton rb4 = findViewById(R.id.rb4);
 
+        final CountDownTimer timer = new CountDownTimer(120000, 1000) {
+
+            @Override
+            public void onTick(long l) {
+                timeText.setText((l/ 1000) + " seconds left");
+            }
+
+            @Override
+            public void onFinish() {
+                //intent to take to stats screen
+                Intent i = new Intent(QuestionActivity.this, ResultsActivity.class);
+                startActivity(i);
+            }
+        }.start();
+
         ProgressAsyncTask nextQuestion = new ProgressAsyncTask(textQuestion, triviaImage, textQuestionNumber, categoryText, rb1, rb2, rb3, rb4, QuestionActivity.this );
         nextQuestion.execute(MainActivity.triviaArrayList.get(position));
 
         //Log.d("Selected answer", "" + getAnswer(rb1, rb2, rb3, rb4));
+        Button exitButton = findViewById(R.id.exitButton);
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(QuestionActivity.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
 
        findViewById(R.id.nextButton).setOnClickListener(new View.OnClickListener() {
             @Override
