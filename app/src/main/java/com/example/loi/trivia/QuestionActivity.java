@@ -90,8 +90,7 @@ public class QuestionActivity extends AppCompatActivity {
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(QuestionActivity.this, MainActivity.class);
-                startActivity(i);
+                finish();
             }
         });
 
