@@ -17,6 +17,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Page where user will answer questions and cycle through the next ones.
+ * ProgressAsync will be performed here.
+ */
 public class QuestionActivity extends AppCompatActivity {
 
     public static int position, correctAnswers = 0;
@@ -136,6 +140,14 @@ public class QuestionActivity extends AppCompatActivity {
 
     }
 
+    /**
+     *
+     * @param rb1 - radiobutton object 1
+     * @param rb2 - radiobutton object 1
+     * @param rb3 - radiobutton object 1
+     * @param rb4 - radiobutton object 1
+     * @return String of selected answer
+     */
     private String getAnswer(RadioButton rb1, RadioButton rb2, RadioButton rb3, RadioButton rb4 ){
 
         if(rb1.isChecked()){
@@ -155,8 +167,5 @@ public class QuestionActivity extends AppCompatActivity {
 
     }
 
-    public int getCorrectAnswers(){
-        return correctAnswers;
-    }
 
 }

@@ -13,6 +13,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Asynchronous task to cycle through question objects using the Arraylist of Questions
+ */
 public class ProgressAsyncTask extends AsyncTask<Question, Void, Void> {
 
     ImageView triviaImage;
@@ -27,6 +30,18 @@ public class ProgressAsyncTask extends AsyncTask<Question, Void, Void> {
     TextView category;
 
 
+    /**
+     *
+     * @param textQuestion - Textview Object of the current question
+     * @param triviaImage - ImageView object of the stock image
+     * @param questionNumber - TextView object of the current question number
+     * @param categoryText - TextView object of the category field
+     * @param rb1 - Radiobutton object of radio button 1
+     * @param rb2 - Radiobutton object of radio button 2
+     * @param rb3 - Radiobutton object of radio button 3
+     * @param rb4 - Radiobutton object of radio button 4
+     * @param c - Context of activity
+     */
     public ProgressAsyncTask(TextView textQuestion, ImageView triviaImage, TextView questionNumber, TextView categoryText, RadioButton rb1, RadioButton rb2, RadioButton rb3, RadioButton rb4, Context c) {
         super();
 
@@ -54,6 +69,10 @@ public class ProgressAsyncTask extends AsyncTask<Question, Void, Void> {
 
     }
 
+    /**
+     *
+     * @param aVoid - output from doInBackground if applicable
+     */
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
@@ -127,36 +146,22 @@ public class ProgressAsyncTask extends AsyncTask<Question, Void, Void> {
         super.onProgressUpdate(values);
     }
 
+    /**
+     *
+     * @param questions - Takes current question object and sets it to this.question object in this async task
+     * @return
+     */
     @Override
     protected Void doInBackground(Question... questions) {
 
         question = questions[0];
-
-
 
         return null;
 
     }
 
 
-    private String getAnswer(RadioButton rb1, RadioButton rb2, RadioButton rb3, RadioButton rb4 ){
 
-        if(rb1.isChecked()){
-            return rb1.getText().toString();
-        }
-        else if(rb2.isChecked()){
-            return rb2.getText().toString();
-        }
-        else if(rb3.isChecked()){
-            return rb3.getText().toString();
-        }
-        else if (rb4.isChecked()){
-            return rb4.getText().toString();
-        }
-        else
-            return "-";
-
-    }
 
 
 }

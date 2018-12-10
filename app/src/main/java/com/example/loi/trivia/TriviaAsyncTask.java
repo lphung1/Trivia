@@ -19,6 +19,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+/**
+ * Asynchronous task to parse Trivia API and grab Json data from their database.
+ * Question type and number of questions depends on user input.
+ */
 public class TriviaAsyncTask extends AsyncTask<String, Integer, ArrayList<Question>> {
 
     /**
@@ -35,7 +39,10 @@ public class TriviaAsyncTask extends AsyncTask<String, Integer, ArrayList<Questi
     ImageView imageView;
     Context context;
 
-    //constructor
+    /**
+     * Default constructor for async task
+     * @param context - context of activity
+     */
     public TriviaAsyncTask(Context context) {
 
 
@@ -80,21 +87,6 @@ public class TriviaAsyncTask extends AsyncTask<String, Integer, ArrayList<Questi
 
     }
 
-    /**
-     * Runs on the UI thread after {@link #publishProgress} is invoked.
-     * The specified values are the values passed to {@link #publishProgress}.
-     *
-     * @param values The values indicating progress.
-     * @see #publishProgress
-     * @see #doInBackground
-     */
-    @Override
-    protected void onProgressUpdate(Integer... values) {
-        super.onProgressUpdate(values);
-
-
-
-    }
 
     /**
      * <p>
@@ -106,7 +98,6 @@ public class TriviaAsyncTask extends AsyncTask<String, Integer, ArrayList<Questi
      */
     @Override
     protected ArrayList<Question> doInBackground(String... params) {
-
 
 
         HttpURLConnection connection = null;
@@ -136,13 +127,6 @@ public class TriviaAsyncTask extends AsyncTask<String, Integer, ArrayList<Questi
                     t.setChoices(choicesJSONObject);
                     t.setCategory(questionsJSONObject.getString("category"));
 
-                    /*
-
-                    if(questionsJSONObject.optString("image").startsWith("http"))
-                    {
-                        t.setImageUrl(questionsJSONObject.optString("image"));
-                    }
-                    */
 
                     t.setChoices(choicesJSONObject);
 

@@ -18,6 +18,10 @@ import android.net.NetworkInfo;
 
 import java.util.ArrayList;
 
+/**
+ * Home screen of App. This is where user will be able to select category type and number of questions.
+ * Once confirmed, TriviaAsync will execute and fetch data from trivia database.
+ */
 public class MainActivity extends AppCompatActivity {
 
     public static ArrayList<Question> triviaArrayList = new ArrayList<Question>();
@@ -75,14 +79,11 @@ public class MainActivity extends AppCompatActivity {
 
     }//end on create
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d("a1", "OnResume started");
 
-
-    }
-
+    /**
+     * Class to check if device is connected to internet. Returns true or false
+     * @return
+     */
     private boolean isConnected(){
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
@@ -95,6 +96,11 @@ public class MainActivity extends AppCompatActivity {
         return true;
     } //end isConnected method
 
+    /**
+     * Converts category to number representation of the category to be used in API
+     * @param param - String of category
+     * @return - int - number representing category to use in API
+     */
     private String convertToNum(String param)
     {
         Log.d("a1", "convertToNum hit with param : " + param);

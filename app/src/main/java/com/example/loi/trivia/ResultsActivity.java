@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * Results page, displays results of game.
+ */
 public class ResultsActivity extends AppCompatActivity {
 
     @Override
