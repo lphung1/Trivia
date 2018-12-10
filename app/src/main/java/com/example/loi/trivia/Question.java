@@ -6,7 +6,7 @@ import org.json.JSONException;
 
 public class Question implements Serializable {
 
-    String question, text, imageUrl, answer, category  = null;
+    String question, text, answer, category  = null;
     JSONArray choices;
 
     //blank constructor
@@ -35,14 +35,6 @@ public class Question implements Serializable {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
     }
 
     public String getAnswer() {
