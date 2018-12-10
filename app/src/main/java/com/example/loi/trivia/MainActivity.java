@@ -42,11 +42,6 @@ public class MainActivity extends AppCompatActivity {
         difficulty = findViewById(R.id.spinner_difficulty);
         questions = findViewById(R.id.spinner_questions);
 
-        String cat = "&category=" + convertToNum(category.getSelectedItem().toString());
-        Log.d("a1", "category : " + cat);
-        String diff = "&difficulty=" + difficulty.getSelectedItem().toString().toLowerCase();
-        String ques = "amount=" + questions.getSelectedItem().toString();
-
         start = findViewById(R.id.imageView7);
 
         start.setOnClickListener(new View.OnClickListener() {
